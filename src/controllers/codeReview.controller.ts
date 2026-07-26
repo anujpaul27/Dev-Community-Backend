@@ -112,6 +112,6 @@ export const codeReview = async (
   }
 
   const response = await generateContent(code);
-  console.log(response);
+//   console.log(response);
   res.status(200).json(response)
 };

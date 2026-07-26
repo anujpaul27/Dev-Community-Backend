@@ -3,10 +3,13 @@ import config from "./config";
 
 const ConnectDB = async (): Promise<void> => {
   try {
-    await mongoose.connect(config.MONGODB_URI);
-    console.log("Connect to database..");
+    await mongoose.connect(config.MONGODB_URI, {
+      serverSelectionTimeoutMS: 10000,
+    });
+    console.log("Connected to database..");
   } catch (err) {
-    console.log((err as Error).message);
+    console.error("DB connect error:", err);
+    process.exit(1);
   }
 };
 
